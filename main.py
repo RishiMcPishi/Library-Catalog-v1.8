@@ -1,8 +1,12 @@
-# simple library catalog system
+#######################################
+#### SIMPLE LIBRARY CATALOG SYSTEM ####
+#######################################
+
 # import libraries
 import sys
 import time
 import json
+
 # import checked out/returned books in a json file
 filename = 'people.json'
 with open(filename) as f:
@@ -17,6 +21,13 @@ with open(filename) as f:
 # 'brody' : list(),
 # 'franny' : list(),
 # }
+
+# 3 example passwords for each person
+passwords = {
+  'rishi': 'hello88',
+  'brody': 'hockey01',
+  'franny': 'socks97',
+}
 
 # 3 example books in library
 books = {
@@ -49,12 +60,20 @@ if resetting == 'y' or resetting == 'Y':
 
   time.sleep(3)
 
-# ask for name + verification
+# ask for name + password
 name = input('What is you name? (all lower case) ')
 if name not in people.keys():
   print('Your name is not verified')
   sys.exit()
 
+password = input('What is your password? ')
+if not password == passwords[name]:
+  print('Your password is not verified')
+  sys.exit()
+
+# if name and password are correct the user will be let into the system
+print('You have been verified. Welcome Mr.', name)
+  
 # ask if you would like to return or borrow
 return_or_borrow = input('Would you like to return or borrow? ')
 if return_or_borrow == 'borrow':
@@ -90,7 +109,7 @@ else:
   print('Processing...')
   time.sleep(3)
 
-  # check if books has  been checked out and then check them out
+  # check if books has been checked out and then check them out
   if barcode in people[name]:
     k = people[name]
     i = people[name].index(barcode)
@@ -107,8 +126,11 @@ show_books = input(
   'Would you like to see all the books you have checked out? [Y/n] ')
 print()
 if show_books == 'y' or show_books == 'Y':
-  for book in people[name]:
-    print('• ', books[book])
+  if len(people[name]) > 0:
+    for book in people[name]:
+      print('• ', books[book])
+  else:
+    print('You have no books checked out')
 
 # export checked out/returned books in a json file
 filename = 'people.json'
