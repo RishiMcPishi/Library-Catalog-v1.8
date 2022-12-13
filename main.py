@@ -1,6 +1,6 @@
-#######################################
-#### SIMPLE LIBRARY CATALOG SYSTEM ####
-#######################################
+################################
+#### LIBRARY CATALOG SYSTEM ####
+################################
 
 # import libraries
 import sys
@@ -15,18 +15,18 @@ filename = 'books_in.json'
 with open(filename) as f:
   books_in = json.load(f)
 
-# 3 example children in our grade
+# 3 example children in our class
 # people = {
 # 'rishi' : list(),
 # 'brody' : list(),
-# 'franny' : list(),
+# 'francisco' : list(),
 # }
 
 # 3 example passwords for each person
 passwords = {
   'rishi': 'hello88',
-  'brody': 'hockey01',
-  'franny': 'socks97',
+  'brody': 'hockey95',
+  'francisco': 'soccer34',
 }
 
 # 3 example books in library
@@ -34,6 +34,7 @@ books = {
   '4321': 'Harry Potter',
   '1111': 'Legend',
   '1234': 'Amulet',
+  
 }
 
 # books_in = {
@@ -50,7 +51,7 @@ if resetting == 'y' or resetting == 'Y':
   people = {
     'rishi': list(),
     'brody': list(),
-    'franny': list(),
+    'francisco': list(),
   }
   books_in = {
     "4321": 'Harry Potter',
@@ -72,8 +73,8 @@ if not password == passwords[name]:
   sys.exit()
 
 # if name and password are correct the user will be let into the system
-print('You have been verified. Welcome Mr.', name)
-  
+print('You have been verified. Welcome Mr.', name.title())
+
 # ask if you would like to return or borrow
 return_or_borrow = input('Would you like to return or borrow? ')
 if return_or_borrow == 'borrow':
@@ -87,7 +88,7 @@ else:
 
 if return_or_borrow:
   """You would like to check-out"""
-  barcode = input('What is the barcode of the book you want to check out? ')
+  barcode = input('What is the code of the book you want to check out? ')
   print('Processing...')
   time.sleep(3)
 
@@ -105,7 +106,7 @@ if return_or_borrow:
     'Your book has been checked out in the system, you may take the book now.')
 else:
   """You would like to return"""
-  barcode = input('What is the barcode of the book you want to return? ')
+  barcode = input('What is the code of the book you want to return? ')
   print('Processing...')
   time.sleep(3)
 
