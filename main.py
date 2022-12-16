@@ -28,7 +28,7 @@ passwords = {
   'brody': 'hockey95',
   'francisco': 'soccer34',
 }
-
+ 
 # 3 example books in library
 books = {
   '4321': 'Harry Potter',
@@ -95,6 +95,13 @@ if return_or_borrow:
   # check if library has book
   if barcode in books_in.keys():
     print('Your book has been found')
+    # make sure there was no typo in the barcode
+    confirm = input(f'Just to confirm, you would like to check out {books_in[barcode]}? [Y/n] ')
+    if confirm == 'Y' or confirm == 'y':
+      print('Ok!')
+    else:
+      print('Oh, you made a typo.')
+      sys.exit()
   else:
     print('This book has been checked out or is not in our library')
     sys.exit()
@@ -102,8 +109,8 @@ if return_or_borrow:
   # check out book
   people[name].append(barcode)
   del books_in[barcode]
-  print(
-    'Your book has been checked out in the system, you may take the book now.')
+  print()
+  print('Your book has been checked out in the system, you may take the book now.')
 else:
   """You would like to return"""
   barcode = input('What is the code of the book you want to return? ')
