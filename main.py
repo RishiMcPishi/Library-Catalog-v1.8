@@ -24,7 +24,7 @@ with open(filename) as f:
 
 # 3 example passwords for each person
 passwords = {
-  'rishi': 'hello88',
+  'rishi': 'mathmathmath',
   'brody': 'hockey95',
   'francisco': 'soccer34',
 }
@@ -100,7 +100,7 @@ if return_or_borrow:
     if confirm == 'Y' or confirm == 'y':
       print('Ok!')
     else:
-      print('Oh, you made a typo.')
+      print('Oh, looks like you made a typo.')
       sys.exit()
   else:
     print('This book has been checked out or is not in our library')
@@ -109,7 +109,6 @@ if return_or_borrow:
   # check out book
   people[name].append(barcode)
   del books_in[barcode]
-  print()
   print('Your book has been checked out in the system, you may take the book now.')
 else:
   """You would like to return"""
@@ -121,6 +120,12 @@ else:
   if barcode in people[name]:
     k = people[name]
     i = people[name].index(barcode)
+    confirm = input(f'Just to confirm, you would like to return {books[barcode]}? [Y/n] ')
+    if confirm == 'Y' or confirm == 'y':
+      print('Ok!')
+    else:
+      print('Oh, looks like you made a typo.')
+      sys.exit()
     del k[i]
     people[name] = k
     books_in.update({barcode: books[barcode]})
