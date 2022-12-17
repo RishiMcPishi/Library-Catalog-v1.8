@@ -24,7 +24,7 @@ with open(filename) as f:
 
 # 3 example passwords for each person
 passwords = {
-  'rishi': 'mathmathmath',
+  'rishi': 'math81',
   'brody': 'hockey95',
   'francisco': 'soccer34',
 }
@@ -75,19 +75,18 @@ if not password == passwords[name]:
 # if name and password are correct the user will be let into the system
 print('You have been verified. Welcome Mr.', name.title())
 
-# ask if you would like to return or borrow
-return_or_borrow = input('Would you like to return or borrow? ')
-if return_or_borrow == 'borrow':
-  print('Processing...')
-  return_or_borrow = True
-elif return_or_borrow == 'return':
-  print('Processing...')
-  return_or_borrow = False
-else:
+# ask for which transaction the user would like to do
+print('1 - Borrow')
+print('2 - Return')
+print('3 - Look at the books you have checked out')
+options = input('What transaction would you like to do? ')
+
+if int(options) > 3:
   sys.exit()
 
-if return_or_borrow:
-  """You would like to check-out"""
+print()
+if options == '1':
+  """You would like to borrow a book"""
   barcode = input('What is the code of the book you want to check out? ')
   print('Processing...')
   time.sleep(3)
@@ -110,7 +109,7 @@ if return_or_borrow:
   people[name].append(barcode)
   del books_in[barcode]
   print('Your book has been checked out in the system, you may take the book now.')
-else:
+elif options == '2':
   """You would like to return"""
   barcode = input('What is the code of the book you want to return? ')
   print('Processing...')
@@ -133,12 +132,7 @@ else:
   else:
     print('This book has not been checked out or is not in our library')
     sys.exit()
-# asks to view books
-print()
-show_books = input(
-  'Would you like to see all the books you have checked out? [Y/n] ')
-print()
-if show_books == 'y' or show_books == 'Y':
+else:
   if len(people[name]) > 0:
     for book in people[name]:
       print('• ', books[book])
