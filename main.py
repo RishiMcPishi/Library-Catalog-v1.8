@@ -6,6 +6,7 @@
 import sys
 import time
 import json
+from getpass import getpass as secret_input
 
 # import checked out/returned books in a json file
 filename = 'people.json'
@@ -15,26 +16,17 @@ filename = 'books_in.json'
 with open(filename) as f:
   books_in = json.load(f)
 
-# 3 example children in our class
-# people = {
-# 'rishi' : list(),
-# 'brody' : list(),
-# 'francisco' : list(),
-# }
-
-# 3 example passwords for each person
 passwords = {
   'rishi': 'math81',
   'brody': 'hockey95',
   'francisco': 'soccer34',
 }
- 
+
 # 3 example books in library
 books = {
   '4321': 'Harry Potter',
   '1111': 'Legend',
   '1234': 'Amulet',
-  
 }
 
 # books_in = {
@@ -42,6 +34,12 @@ books = {
 # 1111 : 'Legend',
 # 1234 : 'Amulet',
 # }
+
+# give welcome message
+print(
+  '--------------------------------------------------------------------------------',
+  "\033[36m")
+print("Welcome to the catalog system!", "\033[0m")
 
 # ask to reset: for developers ONLY
 resetting = input('Would you like to reset? [Y/n] ')
@@ -67,10 +65,13 @@ if name not in people.keys():
   print('Your name is not verified')
   sys.exit()
 
-password = input('What is your password? ')
+password = secret_input('What is your password? ')
 if not password == passwords[name]:
   print('Your password is not verified')
   sys.exit()
+
+print('Processing...')
+time.sleep(3)
 
 # if name and password are correct the user will be let into the system
 print('You have been verified. Welcome Mr.', name.title())
@@ -84,6 +85,9 @@ options = input('What transaction would you like to do? ')
 if int(options) > 3:
   sys.exit()
 
+print('Processing...')
+time.sleep(3)
+
 print()
 if options == '1':
   """You would like to borrow a book"""
@@ -95,7 +99,9 @@ if options == '1':
   if barcode in books_in.keys():
     print('Your book has been found')
     # make sure there was no typo in the barcode
-    confirm = input(f'Just to confirm, you would like to check out {books_in[barcode]}? [Y/n] ')
+    confirm = input(
+      f'Just to confirm, you would like to check out {books_in[barcode]}? [Y/n] '
+    )
     if confirm == 'Y' or confirm == 'y':
       print('Ok!')
     else:
@@ -108,7 +114,8 @@ if options == '1':
   # check out book
   people[name].append(barcode)
   del books_in[barcode]
-  print('Your book has been checked out in the system, you may take the book now.')
+  print(
+    'Your book has been checked out in the system, you may take the book now.')
 elif options == '2':
   """You would like to return"""
   barcode = input('What is the code of the book you want to return? ')
@@ -119,7 +126,8 @@ elif options == '2':
   if barcode in people[name]:
     k = people[name]
     i = people[name].index(barcode)
-    confirm = input(f'Just to confirm, you would like to return {books[barcode]}? [Y/n] ')
+    confirm = input(
+      f'Just to confirm, you would like to return {books[barcode]}? [Y/n] ')
     if confirm == 'Y' or confirm == 'y':
       print('Ok!')
     else:
@@ -127,7 +135,7 @@ elif options == '2':
       sys.exit()
     del k[i]
     people[name] = k
-    books_in.update({barcode: books[barcode]})
+    books_in.update({barcode: books[barcode]}) # see sources
     print('Your book has been successfully returned')
   else:
     print('This book has not been checked out or is not in our library')
@@ -139,6 +147,10 @@ else:
   else:
     print('You have no books checked out')
 
+print(
+  '--------------------------------------------------------------------------------'
+)
+
 # export checked out/returned books in a json file
 filename = 'people.json'
 with open(filename, 'w') as f:
@@ -146,3 +158,6 @@ with open(filename, 'w') as f:
 filename = 'books_in.json'
 with open(filename, 'w') as f:
   json.dump(books_in, f)
+
+# SOURCES
+# https://www.w3schools.com/python/ref_dictionary_update.asp
