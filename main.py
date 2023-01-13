@@ -21,6 +21,7 @@ passwords = {
   'rishi': os.getenv("rishi_password"),
   'brody': 'hockey95',
   'francisco': 'soccer34',
+  'omer':'giraffe9'
 }
 
 # 3 example books in library
