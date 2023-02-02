@@ -17,6 +17,7 @@ filename = 'books_in.json'
 with open(filename) as f:
   books_in = json.load(f)
 
+# the passwords of people my class
 passwords = {
   'rishi': os.getenv("rishi_password"),
   'brody': 'hockey95',
@@ -37,7 +38,8 @@ print(
   "\033[36m")
 print("📚 Welcome to the catalog system! 📚", "\033[0m")
 
-# ask for name + password
+# ask for name + password with verification
+
 name = input('What is you name? (all lower case) ')
 if name not in people.keys():
   print('Your name is not verified.')
@@ -53,7 +55,7 @@ print('Processing...')
 time.sleep(3)
 
 # if name and password are correct the user will be let into the system
-print(f'You have been verified. Welcome Mr. {name.title()}! 😀')
+print(f'You have been verified. Welcome Master {name.title()}! 😀')
 
 # ask for which transaction the user would like to do
 print('1 - Borrow')
@@ -162,4 +164,4 @@ with open(filename, 'w') as f:
   json.dump(books_in, f)
 
 # Thanks to these scources that helped me make this project what it is now
-# https://www.w3schools.com/python/ref_dictionary_update.asp
+# https://www.w3schools.com/python/ref_dictionary_update.asp                                                             
