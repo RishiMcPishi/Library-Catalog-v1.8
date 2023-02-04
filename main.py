@@ -22,7 +22,8 @@ passwords = {
   'rishi': os.getenv("rishi_password"),
   'brody': 'hockey95',
   'francisco': 'soccer34',
-  'omer':'giraffe9'
+  'omer':'giraffe9',
+  'vince':'fortnitekid69'
 }
 
 # 3 example books in library
@@ -40,7 +41,8 @@ print("📚 Welcome to the catalog system! 📚", "\033[0m")
 
 # ask for name + password with verification
 
-name = input('What is you name? (all lower case) ')
+name = input('What is you name? ')
+name = name.lower()
 if name not in people.keys():
   print('Your name is not verified.')
   sys.exit()
