@@ -17,20 +17,18 @@ filename = 'books_in.json'
 with open(filename) as f:
   books_in = json.load(f)
 
+# import books
+filename = 'catalog.json'
+with open(filename) as f:
+  books = json.load(f)
+
 # the passwords of people my class
 passwords = {
   'rishi': os.getenv("rishi_password"),
   'brody': 'hockey95',
   'francisco': 'soccer34',
-  'omer':'giraffe9',
-  'vince':'fortnitekid69'
-}
-
-# 3 example books in library
-books = {
-  '4321': 'Harry Potter',
-  '1111': 'Legend',
-  '1234': 'Amulet',
+  'omer': 'giraffe9',
+  'vince': 'fortnitekid69'
 }
 
 # give welcome message
@@ -90,7 +88,7 @@ if options == '1':
     if confirm == 'Y' or confirm == 'y':
       print('Ok! 😀')
     else:
-      print('Oh, looks like you made a typo.')
+      print('OK, have a nice day.')
       sys.exit()
   else:
     # check for multiple cases of the book not being able to get checked out
@@ -166,4 +164,4 @@ with open(filename, 'w') as f:
   json.dump(books_in, f)
 
 # Thanks to these scources that helped me make this project what it is now
-# https://www.w3schools.com/python/ref_dictionary_update.asp                                                             
+# https://www.w3schools.com/python/ref_dictionary_update.asp
